@@ -1,10 +1,94 @@
+
 @if (selectedSong) {
   <app-score-viewer
     [song]="selectedSong"
     (back)="backToLibrary()"
   />
 } @else {
-  <app-library
-    (songSelected)="openSong($event)"
-  />
+
+  <main class="app-content">
+
+    @if (activeTab === 'library') {
+      <app-library
+        (songSelected)="openSong($event)"
+      />
+    }
+
+    @if (activeTab === 'favorites') {
+      <section class="placeholder">
+        <h2>Favoritas</h2>
+        <p>Suas músicas favoritas aparecerão aqui.</p>
+      </section>
+    }
+
+    @if (activeTab === 'recent') {
+      <section class="placeholder">
+        <h2>Recentes</h2>
+        <p>Suas músicas acessadas recentemente aparecerão aqui.</p>
+      </section>
+    }
+
+    @if (activeTab === 'settings') {
+      <section class="placeholder">
+        <h2>Configurações</h2>
+        <p>As configurações do aplicativo aparecerão aqui.</p>
+      </section>
+    }
+
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegação principal">
+
+    <button
+      type="button"
+      aria-label="Biblioteca"
+      [class.active]="activeTab === 'library'"
+      [attr.aria-current]="activeTab === 'library' ? 'page' : null"
+      (click)="selectTab('library')"
+    >
+      <svg viewBox="0 0 24 24">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      aria-label="Favoritas"
+      [class.active]="activeTab === 'favorites'"
+      [attr.aria-current]="activeTab === 'favorites' ? 'page' : null"
+      (click)="selectTab('favorites')"
+    >
+      <svg viewBox="0 0 24 24">
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      aria-label="Recentes"
+      [class.active]="activeTab === 'recent'"
+      [attr.aria-current]="activeTab === 'recent' ? 'page' : null"
+      (click)="selectTab('recent')"
+    >
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3 2"/>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      aria-label="Configurações"
+      [class.active]="activeTab === 'settings'"
+      [attr.aria-current]="activeTab === 'settings' ? 'page' : null"
+      (click)="selectTab('settings')"
+    >
+      <svg viewBox="0 0 24 24">
+        <circle cx="12.5" cy="11" r="3"/>
+        <path d="m19.4 15 .1.1a1.7 1.7 0 0 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 0 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 0 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 0 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 0 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 0 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 0 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 0 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z"/>
+      </svg>
+    </button>
+
+  </nav>
 }
