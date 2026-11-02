@@ -1,0 +1,61 @@
+<div class="library">
+
+  <header class="header">
+    <div>
+      <span class="eyebrow">IBVG • MÚSICA</span>
+      <h1>Biblioteca</h1>
+      <p>Encontre suas partituras.</p>
+    </div>
+
+    <div class="music-count">
+      <strong>{{ songs.length }}</strong>
+      <span>músicas</span>
+    </div>
+  </header>
+
+  <div class="search-box">
+    <span>⌕</span>
+
+    <input
+      type="search"
+      placeholder="Pesquisar música ou compositor..."
+      [(ngModel)]="search"
+      (input)="filterSongs()"
+    />
+  </div>
+
+  <section class="song-section">
+
+    <h2>Meu repertório</h2>
+
+    @if (loading) {
+      <p class="message">Carregando músicas...</p>
+    }
+
+    @if (error) {
+      <p class="message error">{{ error }}</p>
+    }
+
+    @if (!loading && !error && filteredSongs.length === 0) {
+      <p class="message">Nenhuma música encontrada.</p>
+    }
+
+    @for (song of filteredSongs; track song.id) {
+      <button
+        class="song-card"
+        (click)="openSong(song)"
+      >
+        <div class="music-icon">♫</div>
+
+        <div class="song-info">
+          <strong>{{ song.title }}</strong>
+          <span>{{ song.composer || 'Compositor não informado' }}</span>
+        </div>
+
+        <span class="arrow">›</span>
+      </button>
+    }
+
+  </section>
+
+</div>

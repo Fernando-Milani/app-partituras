@@ -1,0 +1,41 @@
+<div class="viewer">
+
+  <header class="viewer-header">
+    <button class="back-button" (click)="back.emit()">
+      ‹
+    </button>
+
+    <div class="title">
+      <strong>{{ song.title }}</strong>
+      <span>{{ song.composer || 'Compositor não informado' }}</span>
+    </div>
+  </header>
+
+  <main class="score-content">
+
+    @if (loading) {
+      <div class="status">
+        <div class="loader"></div>
+        <p>Preparando partitura...</p>
+      </div>
+    }
+
+    @if (error) {
+      <div class="status error">
+        <strong>Não foi possível abrir a música.</strong>
+        <p>{{ error }}</p>
+        <button (click)="loadScore()">Tentar novamente</button>
+      </div>
+    }
+
+    @if (!loading && !error) {
+      <div class="score-pages">
+        @for (page of pages; track $index) {
+          <div class="score-page" [innerHTML]="page"></div>
+        }
+      </div>
+    }
+
+  </main>
+
+</div>
