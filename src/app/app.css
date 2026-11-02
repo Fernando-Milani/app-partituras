@@ -1,0 +1,40 @@
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px #00000015;
+  width: 350px;
+}
+
+input {
+  padding: 12px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+button {
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.resultado {
+  margin-top: 20px;
+  color: #2563eb;
+}
