@@ -1,0 +1,134 @@
+<div class="scan-page">
+  <header class="header">
+    <div>
+      <span class="eyebrow">IBVG • MÚSICA</span>
+      <h1>Scanner</h1>
+      <p>Digitalize uma partitura para adicionar à biblioteca.</p>
+    </div>
+  </header>
+
+  <input
+    #cameraInput
+    class="hidden-input"
+    type="file"
+    accept="image/*"
+    capture="environment"
+    (change)="onFileSelected($event)"
+  />
+
+  <input
+    #fileInput
+    class="hidden-input"
+    type="file"
+    accept="image/*,application/pdf,.pdf"
+    (change)="onFileSelected($event)"
+  />
+
+  @if (!selectedFile) {
+    <section class="upload-area">
+      <div class="upload-icon">♫</div>
+      <h2>Adicionar partitura</h2>
+      <p>
+        Fotografe uma partitura impressa ou selecione
+        uma imagem ou PDF do seu dispositivo.
+      </p>
+
+      <button
+        class="primary-button"
+        type="button"
+        (click)="openCamera(cameraInput)"
+      >
+        <span>◎</span>
+        Abrir câmera
+      </button>
+
+      <button
+        class="secondary-button"
+        type="button"
+        (click)="openFiles(fileInput)"
+      >
+        <span>＋</span>
+        Escolher arquivo
+      </button>
+
+      <span class="file-hint">Formatos aceitos: JPG, PNG e PDF</span>
+    </section>
+  } @else {
+    <section class="selected-section">
+      <div class="section-heading">
+        <h2>Arquivo selecionado</h2>
+        <button type="button" class="remove-button" (click)="removeFile()">
+          Remover
+        </button>
+      </div>
+
+      <div class="file-card">
+        @if (previewUrl) {
+          <img [src]="previewUrl" alt="Pré-visualização da partitura" />
+        } @else {
+          <div class="pdf-preview">
+            <span>PDF</span>
+            <strong>Documento selecionado</strong>
+          </div>
+        }
+
+        <div class="file-info">
+          <strong>{{ selectedFile.name }}</strong>
+          <span>
+            {{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB
+          </span>
+        </div>
+      </div>
+
+      @if (!convertedFile) {
+        <button
+          class="primary-button convert-button"
+          type="button"
+          [disabled]="loading"
+          (click)="convert()"
+        >
+          @if (loading) {
+            Processando partitura...
+          } @else {
+            Converter para MusicXML
+          }
+        </button>
+      }
+
+      @if (convertedFile) {
+        <div class="save-section">
+          <label for="song-title">Nome da música</label>
+
+          <input
+            id="song-title"
+            type="text"
+            [(ngModel)]="title"
+            placeholder="Ex.: With Joy to the World"
+            maxlength="100"
+          />
+
+          <button
+            class="primary-button"
+            type="button"
+            [disabled]="!title.trim() || saving"
+            (click)="save()"
+          >
+            {{ saving ? 'Salvando...' : 'Adicionar à biblioteca' }}
+          </button>
+        </div>
+      }
+    </section>
+  }
+
+  @if (error) {
+    <p class="feedback error">{{ error }}</p>
+  }
+
+  @if (success) {
+    <p class="feedback success">{{ success }}</p>
+  }
+
+  <p class="privacy-note">
+    As partituras convertidas serão armazenadas localmente neste dispositivo.
+  </p>
+</div>
