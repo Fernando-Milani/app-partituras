@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
@@ -21,12 +20,15 @@ export class MusicXmlService {
 
         this.toolkit = new VerovioToolkit(module);
 
-        this.toolkit.setOptions({
+
+        this.toolkit.setOptions({ // Opções de exibição das partituras
           scale: 45,
           pageWidth: 1800,
           pageHeight: 2400,
           adjustPageHeight: true,
-          breaks: 'auto'
+          breaks: 'auto',
+          tieEndpointThickness: 0.08,
+          tieMidpointThickness: 0.35
         });
 
         console.log('[Verovio] Inicializado com sucesso.');

@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class OmrService {
   // Endereço provisório. Substituiremos pelo endereço real do servidor.
-  private readonly endpoint = '/api/omr/convert';
+  //private readonly endpoint = '/api/omr/convert';
+  private readonly endpoint = 'http://localhost:8000/api/omr/convert';
 
   async convert(file: File): Promise<Blob> {
     const formData = new FormData();
@@ -17,10 +18,11 @@ export class OmrService {
     });
 
     if (!response.ok) {
-      const message = await response.text();
+      const errorBody = await response.json().catch(() => null);
 
       throw new Error(
-        message || `Falha na conversão OMR (${response.status}).`
+        errorBody?.detail ||
+        `Falha na conversão OMR (${response.status}).`
       );
     }
 

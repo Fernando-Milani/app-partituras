@@ -42,3 +42,26 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# HOMR
+.cache/
+.cache_homr/
+models/
+*.onnx
+
+# Temporários
+omr-server/output/
+omr-server/temp/
+*.log
+
+# Ambiente
+.env
