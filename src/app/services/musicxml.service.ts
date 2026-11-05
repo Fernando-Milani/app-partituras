@@ -22,13 +22,54 @@ export class MusicXmlService {
 
 
         this.toolkit.setOptions({ // Opções de exibição das partituras
-          scale: 45,
-          pageWidth: 1800,
-          pageHeight: 2400,
-          adjustPageHeight: true,
-          breaks: 'auto',
-          tieEndpointThickness: 0.08,
-          tieMidpointThickness: 0.35
+          scale: 50,
+            // Escala de renderização da partitura.
+            // Controla o tamanho geral dos elementos musicais:
+            // notas, pautas, claves, textos, compassos etc.
+            // Valores maiores deixam a partitura maior.
+
+            //pageWidth: 1800,
+            pageWidth: 1500,
+            // Largura da página de renderização, em unidades
+            // utilizadas pela biblioteca (geralmente pixels ou unidades SVG).
+
+            pageHeight: 2400,
+            // Altura da página de renderização.
+            // Define o espaço vertical disponível para a partitura.
+
+            adjustPageWidth: false,
+
+            adjustPageHeight: true,
+            // Permite ajustar automaticamente a altura da página
+            // conforme o conteúdo da partitura.
+            // Evita espaços vazios excessivos ou cortes verticais.
+
+            breaks: 'auto',
+            // Define como as quebras de linha/sistema são organizadas.
+            // 'auto' permite que a biblioteca escolha automaticamente
+            // onde uma linha da partitura termina e a próxima começa.
+
+            tieEndpointThickness: 0.08,
+            // Espessura das extremidades das ligaduras de prolongação.
+            // Controla a espessura nas pontas do arco.
+
+            tieMidpointThickness: 0.35,
+            // Espessura da região central das ligaduras de prolongação.
+            // Controla o volume do arco em seu ponto mais espesso.
+
+            slurEndpointThickness: 0.08,
+            // Espessura das extremidades das ligaduras de expressão.
+            // Controla a espessura nas pontas do arco.
+
+            slurMidpointThickness: 0.35
+            // Espessura da região central das ligaduras de expressão.
+            // Controla o volume do arco em seu ponto mais espesso.
+
+
+            //slurHeightFactor, // Altura da ligadura de expressão. Valores maiores deixam o arco mais achatado.
+            //slurMinHeight, // Altura mínima da ligadura de expressão.
+            //slurMaxHeight, // Altura máxima da ligadura de expressão.
+            //slurCurveFactor, // Arredondamento da ligadura de expressão. Valores maiores deixam a curva mais arredondada.
         });
 
         console.log('[Verovio] Inicializado com sucesso.');

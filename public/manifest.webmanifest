@@ -1,8 +1,8 @@
 {
   "id": "/app-partituras/",
-  "name": "App Partituras IBVG",
-  "short_name": "Partituras IBVG",
-  "description": "Aplicativo de consulta de partituras do IBVG.",
+  "name": "Myestro IBVG",
+  "short_name": "Myestro",
+  "description": "Aplicativo de consulta de partituras do IBVG",
   "start_url": "/app-partituras/",
   "scope": "/app-partituras/",
   "display": "standalone",
